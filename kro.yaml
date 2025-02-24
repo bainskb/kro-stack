@@ -10,19 +10,18 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: public.ecr.aws/kro/kro
-    targetRevision: HEAD
-    path: helm
+    path: kro
+    repoURL: https://api.github.com/repos/kro-run/kro/releases/latest
     helm:
       valueFiles:
-        - values.yaml
+        releaseName: kro
+    chart: kro
   destination:
-    server: https://kubernetes.default.svc
+    server: "https://kubernetes.default.svc"
     namespace: kro
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
     automated:
-      prune: true
       selfHeal: true
-      
+      prune: true
